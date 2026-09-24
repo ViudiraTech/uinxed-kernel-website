@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uinxed</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Site Scripts -->
+    <script src="script/script.js"></script>
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="stylesheet/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-mono-950 text-mono-200 font-sans antialiased min-h-screen flex flex-col selection:bg-mono-200 selection:text-mono-950 bg-grid-pattern relative">
+
+    <!-- Top Navigation -->
+    <header class="sticky top-0 z-50 bg-mono-950/80 backdrop-blur-md border-b border-mono-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-8 h-8 rounded border border-mono-600 bg-mono-900 flex items-center justify-center font-mono font-bold text-mono-100 group-hover:border-mono-200 transition-colors">
+                    U
+                </div>
+                <span class="font-mono font-bold tracking-wider text-mono-100 text-lg">UINXED</span>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-mono text-mono-400">
+                <a href="#features" class="hover:text-mono-100 transition-colors">Features</a>
+                <a href="#quickstart" class="hover:text-mono-100 transition-colors">Quick Start</a>
+            </nav>
+
+            <!-- External Actions -->
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/ViudiraTech/Uinxed-Kernel" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 text-xs font-mono border border-mono-700 hover:border-mono-200 bg-mono-900 text-mono-200 rounded transition-all flex items-center space-x-2">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 md:py-28 px-4 sm:px-6 max-w-6xl mx-auto w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Hero Text -->
+            <div class="lg:col-span-7 space-y-6">
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-mono-50 font-sans leading-tight">
+                    UNIX-like x86-64 kernel written from scratch.
+                </h1>
+                
+                <p class="text-mono-400 text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
+                    <strong class="text-mono-200 font-normal">Uinxed</strong> is a monolithic UNIX-like x86_64 kernel, written from scratch in C.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-mono text-sm">
+                    <div class="flex items-center bg-mono-900 border border-mono-700 rounded p-1 pl-3 group focus-within:border-mono-300">
+                        <span class="text-mono-500 mr-2 select-none">$</span>
+                        <input id="clone-cmd" type="text" readonly value="git clone https://github.com/uinxed/kernel.git" class="bg-transparent text-mono-200 text-xs sm:text-sm outline-none w-full font-mono cursor-text select-all">
+                        <button onclick="copyCloneCmd()" id="copy-btn" class="ml-2 px-3 py-1.5 bg-mono-800 hover:bg-mono-700 text-mono-200 border border-mono-700 rounded text-xs transition-colors flex items-center shrink-0">
+                            <span id="copy-text">Copy</span>
+                        </button>
+                    </div>
+
+                    <a href="#quickstart" class="px-5 py-2.5 bg-mono-100 hover:bg-mono-300 text-mono-950 font-medium rounded text-center transition-colors shrink-0">
+                        Quick Start &rarr;
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Core Features Grid -->
+    <section id="features" class="py-16 border-t border-mono-800/80 bg-mono-900/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-mono-100 mt-2">Architected for Performance & Stability</h2>
+                <p class="text-mono-400 mt-2 text-sm">Ultra performance & stability on most of the platforms</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Feature 1 -->
+                <div class="p-6 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="w-10 h-10 rounded border border-mono-700 bg-mono-800 flex items-center justify-center font-mono text-mono-200 mb-4 group-hover:border-mono-400 transition-colors">
+                            I
+                        </div>
+                        <h3 class="text-lg font-semibold text-mono-100 mb-2">Limine Bootloader</h3>
+                        <p class="text-mono-400 text-sm leading-relaxed">
+                            Boots with Limine, a bootloader for security and protability.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-6 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="w-10 h-10 rounded border border-mono-700 bg-mono-800 flex items-center justify-center font-mono text-mono-200 mb-4 group-hover:border-mono-400 transition-colors">
+                            II
+                        </div>
+                        <h3 class="text-lg font-semibold text-mono-100 mb-2">Memory Safety</h3>
+                        <p class="text-mono-400 text-sm leading-relaxed">
+                            Fine-designed memory management. HHDM. Unified page cache with page locking, LRU reclaim, dirty-page writeback, readahead, and truncation. Swap subsystem.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-6 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="w-10 h-10 rounded border border-mono-700 bg-mono-800 flex items-center justify-center font-mono text-mono-200 mb-4 group-hover:border-mono-400 transition-colors">
+                            III
+                        </div>
+                        <h3 class="text-lg font-semibold text-mono-100 mb-2">Efficient Scheduler</h3>
+                        <p class="text-mono-400 text-sm leading-relaxed">
+                            Fine-tuned EEVDF scheduler and SMP Support. Priority Inheritance (PI) for robust mutex and futex semantics
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="p-6 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="w-10 h-10 rounded border border-mono-700 bg-mono-800 flex items-center justify-center font-mono text-mono-200 mb-4 group-hover:border-mono-400 transition-colors">
+                            IV
+                        </div>
+                        <h3 class="text-lg font-semibold text-mono-100 mb-2">Linux Compatibility</h3>
+                        <p class="text-mono-400 text-sm leading-relaxed">
+                            Linux x86-64 syscall ABI (Linux 6.12 numbering, 0-462). Fully implemented Linux ABI & API.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start Section -->
+    <section id="quickstart" class="py-20 border-t border-mono-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-mono-100 mt-2">Get Started in Seconds</h2>
+                <p class="text-mono-400 text-sm mt-1">Compile and run Uinxed in your environment</p>
+            </div>
+
+            <!-- Code Steps -->
+            <div class="space-y-6">
+                
+                <!-- Step 1 -->
+                <div class="bg-mono-900 border border-mono-800 rounded-lg p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-mono text-xs text-mono-300 font-semibold">1. Prerequisites & Toolchain Setup</span>
+                        <span class="text-mono-500 text-xs font-mono">Bash</span>
+                    </div>
+                    <pre class="bg-mono-950 p-3 rounded border border-mono-800/80 text-xs sm:text-sm text-mono-300 font-mono overflow-x-auto">
+<span class="text-mono-500"># Install compiler & QEMU emulator</span>
+$ sudo apt-get install gcc make qemu-system-x86 build-essential</pre>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-mono-900 border border-mono-800 rounded-lg p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-mono text-xs text-mono-300 font-semibold">2. Build Kernel Image & Launch in QEMU</span>
+                        <span class="text-mono-500 text-xs font-mono">Makefile</span>
+                    </div>
+                    <pre class="bg-mono-950 p-3 rounded border border-mono-800/80 text-xs sm:text-sm text-mono-300 font-mono overflow-x-auto">
+<span class="text-mono-500"># Clone the core repository and boot inside virtual machine</span>
+$ git clone https://github.com/ViudiraTech/Uinxed-Kernel
+$ cd Uinxed-Kernel
+$ make run</pre>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimal Footer -->
+    <footer class="mt-auto border-t border-mono-800 bg-mono-950 py-10 font-mono text-xs text-mono-500">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                &copy; 2026 ViudiraTech. Website <a href="#" class="underline hover:text-mono-300">Cloudflare Pages</a>.
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="https://viudiratech.rainyland.top/" target="_blank" class="hover:text-mono-300 transition-colors">ViudiraTech</a>
+                <a href="https://rainyland.top/" target="_blank" class="hover:text-mono-300 transition-colors">RainyLand</a>
+                <a href="https://github.com/ViudiraTech/Uinxed-Kernel" target="_blank" class="hover:text-mono-300 transition-colors">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
