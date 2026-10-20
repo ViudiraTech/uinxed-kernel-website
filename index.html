@@ -1,366 +1,264 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uinxed Kernel Project</title>
-    <!-- Icon -->
-    <link rel="icon" href="asset/uinxed-mark.png" type="image/x-icon">
-    <link rel="shortcut icon" href="asset/uinxed-mark.png" type="image/x-icon">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Site Scripts -->
-    <script src="script/script.js"></script>
-    <!-- Custom Stylesheet -->
+    <title>Uinxed Kernel &mdash; UNIX-like x86-64 kernel written from scratch</title>
+    <meta name="description" content="Uinxed is a monolithic UNIX-like x86-64 kernel written from scratch in C. Runs on bare metal and virtual machines.">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="asset/favicon-64.png" type="image/png">
+    <link rel="apple-touch-icon" href="asset/uinxed-mark.png">
     <link rel="stylesheet" href="stylesheet/style.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="script/script.js" defer></script>
 </head>
-<body class="bg-mono-950 text-mono-200 font-sans antialiased min-h-screen flex flex-col selection:bg-mono-200 selection:text-mono-950 bg-grid-pattern relative">
+<body>
 
-    <!-- Top Navigation -->
-    <header class="sticky top-0 z-50 bg-mono-950/80 backdrop-blur-md border-b border-mono-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-8 h-8 flex items-center justify-center font-mono font-bold text-mono-100 transition-colors">
-                    <img src="asset/uinxed-mark.png">
-                </div>
-                <span class="font-mono font-bold tracking-wider text-mono-100 text-lg">UINXED KERNEL</span>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="brand">
+                <img src="asset/uinxed-mark.png" alt="" width="32" height="32">
+                <span>UINXED KERNEL</span>
             </a>
 
-            <!-- Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-mono text-mono-400">
-                <a href="#features" class="hover:text-mono-100 transition-colors">Features</a>
-                <a href="#quickstart" class="hover:text-mono-100 transition-colors">Quick Start</a>
+            <nav class="nav" aria-label="Main">
+                <a href="#features">Features</a>
+                <a href="#quickstart">Quick Start</a>
+                <a href="#supporters">Supporters</a>
             </nav>
 
-            <!-- External Actions -->
-            <div class="flex items-center space-x-4">
-                <a href="https://github.com/ViudiraTech/Uinxed-Kernel" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 text-xs font-mono border border-mono-700 hover:border-mono-200 bg-mono-900 text-mono-200 rounded transition-all flex items-center space-x-2">
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                    </svg>
-                    <span>GitHub</span>
-                </a>
-            </div>
+            <a href="https://github.com/ViudiraTech/Uinxed-Kernel" target="_blank" rel="noopener noreferrer" class="btn btn-small">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="py-20 md:py-28 px-4 sm:px-6 max-w-6xl mx-auto w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <!-- Hero Text -->
-            <div class="lg:col-span-7 space-y-6">
-                
-                <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-mono-50 font-sans leading-tight">
-                    UNIX-like x86-64 kernel written from scratch.
-                </h1>
-                
-                <p class="text-mono-400 text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
-                    <strong class="text-mono-200 font-normal">Uinxed</strong> is a monolithic UNIX-like x86-64 kernel, written from scratch in C. Runs on baremetal and virtual machines.
+    <main id="main">
+
+        <!-- Hero -->
+        <section class="container hero">
+            <div>
+                <h1>UNIX-like x86-64 kernel written from scratch.</h1>
+                <p class="hero-lead">
+                    <strong>Uinxed</strong> is a monolithic UNIX-like x86-64 kernel, written from scratch in C. Runs on bare metal and virtual machines.
                 </p>
 
-                <!-- Action Buttons -->
-                <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-mono text-sm">
-                    <div class="flex items-center bg-mono-900 border border-mono-700 rounded p-1 pl-3 group focus-within:border-mono-300">
-                        <span class="text-mono-500 mr-2 select-none">$</span>
-                        <input id="clone-cmd" type="text" readonly value="git clone https://github.com/ViudiraTech/Uinxed-Kernel.git" class="bg-transparent text-mono-200 text-xs sm:text-sm outline-none w-full font-mono cursor-text select-all">
-                        <button onclick="copyCloneCmd()" id="copy-btn" class="ml-2 px-3 py-1.5 bg-mono-800 hover:bg-mono-700 text-mono-200 border border-mono-700 rounded text-xs transition-colors flex items-center shrink-0">
-                            <span id="copy-text">Copy</span>
-                        </button>
+                <div class="hero-actions">
+                    <div class="clone">
+                        <span class="clone-prompt" aria-hidden="true">$</span>
+                        <input id="clone-cmd" type="text" readonly aria-label="Clone command" value="git clone https://github.com/ViudiraTech/Uinxed-Kernel.git">
+                        <button id="copy-btn" type="button" class="btn btn-small">Copy</button>
                     </div>
-
-                    <a href="#quickstart" class="px-5 py-2.5 bg-mono-100 hover:bg-mono-300 text-mono-950 font-medium rounded text-center transition-colors shrink-0">
-                        Quick Start &rarr;
-                    </a>
+                    <a href="#quickstart" class="btn btn-primary">Quick Start &rarr;</a>
                 </div>
             </div>
 
-            <!-- Hero Visual -->
-            <div class="lg:col-span-5">
-                <div class="hero-visual relative rounded-lg border border-mono-800 bg-mono-900/60 overflow-hidden shadow-2xl shadow-black/40 group">
-                    <!-- Window Chrome -->
-                    <div class="flex items-center space-x-2 px-4 py-2.5 bg-mono-900 border-b border-mono-800">
-                        <span class="w-2.5 h-2.5 rounded-full bg-mono-700"></span>
-                        <span class="w-2.5 h-2.5 rounded-full bg-mono-700"></span>
-                        <span class="w-2.5 h-2.5 rounded-full bg-mono-700"></span>
-                        <span class="ml-3 font-mono text-xs text-mono-500">minecraft &mdash; uinxed</span>
+            <figure>
+                <div class="screenshot">
+                    <div class="screenshot-bar" aria-hidden="true">
+                        <span></span><span></span><span></span>minecraft &mdash; uinxed
                     </div>
-                    <img src="asset/minecraft-on-uinxed.webp" alt="Minecraft running on Uinxed Kernel" class="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.02]">
-                    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-mono-950/40 via-transparent to-transparent"></div>
+                    <img src="asset/minecraft-on-uinxed.webp" alt="Screenshot of Minecraft running on the Uinxed kernel" width="1024" height="698">
                 </div>
-                <p class="mt-3 text-center font-mono text-xs text-mono-500">Minecraft running natively on Uinxed</p>
+                <figcaption class="caption">Minecraft running natively on Uinxed</figcaption>
+            </figure>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="section section-alt">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Architected for Performance &amp; Stability</h2>
+                    <p>A modern, self-contained kernel design &mdash; from boot to userspace</p>
+                </div>
+
+                <div class="cards">
+                    <article class="card">
+                        <h3>Limine Boot &amp; SMP</h3>
+                        <p>Boots through the Limine bootloader in both UEFI and Legacy BIOS mode, and brings up every CPU core via SMP.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>EEVDF Scheduler</h3>
+                        <p>Fine-tuned EEVDF scheduler with per-CPU runqueues and SMP load balancing. Priority Inheritance for robust mutex and futex semantics.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Memory Management</h3>
+                        <p>Higher-half direct map, a unified page cache with LRU reclaim, dirty-page writeback and readahead, and a swap subsystem.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Linux Compatibility</h3>
+                        <p>Implements the Linux x86-64 syscall ABI, so existing Linux userspace such as Alpine Linux can run on Uinxed.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Filesystems &amp; Networking</h3>
+                        <p>UNIX-style VFS with FAT, ext2/3/4, NTFS and ISO 9660, plus an in-house IPv4/IPv6 TCP/UDP network stack.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Real Hardware</h3>
+                        <p>Drivers for storage, USB, input, audio, display and network devices. Runs in QEMU and on physical machines.</p>
+                    </article>
+                </div>
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <!-- Core Features Grid -->
-    <section id="features" class="py-16 border-t border-mono-800/80 bg-mono-900/30">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl font-bold text-mono-100 mt-2">Architected for Performance & Stability</h2>
-                <p class="text-mono-400 mt-2 text-sm">Ultra performance & stability on most of the platforms</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <!-- Feature 1 -->
-                <div class="p-6 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="w-10 h-10 rounded border border-mono-700 bg-mono-800 flex items-center justify-center font-mono text-mono-200 mb-4 group-hover:border-mono-400 transition-colors">
-                            I
-                        </div>
-                        <h3 class="text-lg font-semibold text-mono-100 mb-2">Limine Bootloader</h3>
-                        <p class="text-mono-400 text-sm leading-relaxed">
-                            Boots with Limine, a bootloader for security and protability.
-                        </p>
-                    </div>
+        <!-- Quick Start -->
+        <section id="quickstart" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Get Started in Seconds</h2>
+                    <p>Compile and run Uinxed in your environment</p>
                 </div>
 
-                <!-- Feature 2 -->
-                <div class="p-6 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="w-10 h-10 rounded border border-mono-700 bg-mono-800 flex items-center justify-center font-mono text-mono-200 mb-4 group-hover:border-mono-400 transition-colors">
-                            II
-                        </div>
-                        <h3 class="text-lg font-semibold text-mono-100 mb-2">Memory Safety</h3>
-                        <p class="text-mono-400 text-sm leading-relaxed">
-                            Fine-designed memory management. HHDM. Unified page cache with page locking, LRU reclaim, dirty-page writeback, readahead, and truncation. Swap subsystem.
-                        </p>
-                    </div>
-                </div>
+                <ol class="steps">
+                    <li class="step">
+                        <h3>1. Install the toolchain (Debian / Ubuntu)</h3>
+<pre><code><span class="comment"># Compiler, ISO tool and QEMU emulator</span>
+$ sudo apt install make gcc xorriso qemu-system-x86</code></pre>
+                    </li>
 
-                <!-- Feature 3 -->
-                <div class="p-6 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="w-10 h-10 rounded border border-mono-700 bg-mono-800 flex items-center justify-center font-mono text-mono-200 mb-4 group-hover:border-mono-400 transition-colors">
-                            III
-                        </div>
-                        <h3 class="text-lg font-semibold text-mono-100 mb-2">Efficient Scheduler</h3>
-                        <p class="text-mono-400 text-sm leading-relaxed">
-                            Fine-tuned EEVDF scheduler and SMP Support. Priority Inheritance (PI) for robust mutex and futex semantics
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="p-6 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="w-10 h-10 rounded border border-mono-700 bg-mono-800 flex items-center justify-center font-mono text-mono-200 mb-4 group-hover:border-mono-400 transition-colors">
-                            IV
-                        </div>
-                        <h3 class="text-lg font-semibold text-mono-100 mb-2">Linux Compatibility</h3>
-                        <p class="text-mono-400 text-sm leading-relaxed">
-                            Linux x86-64 syscall ABI (Linux 6.12 numbering, 0-462). Fully implemented Linux ABI & API.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Start Section -->
-    <section id="quickstart" class="py-20 border-t border-mono-800">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-mono-100 mt-2">Get Started in Seconds</h2>
-                <p class="text-mono-400 text-sm mt-1">Compile and run Uinxed in your environment</p>
-            </div>
-
-            <!-- Code Steps -->
-            <div class="space-y-6">
-                
-                <!-- Step 1 -->
-                <div class="bg-mono-900 border border-mono-800 rounded-lg p-5">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="font-mono text-xs text-mono-300 font-semibold">1. Prerequisites & Toolchain Setup</span>
-                        <span class="text-mono-500 text-xs font-mono">Bash</span>
-                    </div>
-                    <pre class="bg-mono-950 p-3 rounded border border-mono-800/80 text-xs sm:text-sm text-mono-300 font-mono overflow-x-auto">
-<span class="text-mono-500"># Install compiler & QEMU emulator</span>
-$ sudo apt-get install gcc make qemu-system-x86 build-essential</pre>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="bg-mono-900 border border-mono-800 rounded-lg p-5">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="font-mono text-xs text-mono-300 font-semibold">2. Build Kernel Image & Launch in QEMU</span>
-                        <span class="text-mono-500 text-xs font-mono">Makefile</span>
-                    </div>
-                    <pre class="bg-mono-950 p-3 rounded border border-mono-800/80 text-xs sm:text-sm text-mono-300 font-mono overflow-x-auto">
-<span class="text-mono-500"># Clone the core repository and boot inside virtual machine</span>
-$ git clone https://github.com/ViudiraTech/Uinxed-Kernel
+                    <li class="step">
+                        <h3>2. Build the kernel and launch it in QEMU</h3>
+<pre><code><span class="comment"># Clone the repository and boot it inside a virtual machine</span>
+$ git clone https://github.com/ViudiraTech/Uinxed-Kernel.git
 $ cd Uinxed-Kernel
-$ make run -j$(nproc)</pre>
-                </div>
-
+$ make run -j$(nproc)</code></pre>
+                        <p class="step-note">
+                            Other distributions, booting on real hardware and more are covered in the
+                            <a class="link" href="https://github.com/ViudiraTech/Uinxed-Kernel#getting-started" target="_blank" rel="noopener noreferrer">README</a>.
+                        </p>
+                    </li>
+                </ol>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Supporters Section -->
-    <section id="supporters" class="py-20 border-t border-mono-800 bg-mono-950">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl font-bold text-mono-100 mt-2">Supporters</h2>
-                <p class="text-mono-400 mt-2 text-sm">Uinxed is made possible by the generous support of these people</p>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                
-                <!-- Supporter -->
-                <div class="flex items-center space-x-4 p-4 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-mono-800 border border-mono-700 flex items-center justify-center font-mono text-sm text-mono-200 shrink-0 group-hover:border-mono-400 transition-colors">
-                        璇
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-sm text-mono-100 truncate">璇了又璇</p>
-                        <p class="text-xs text-mono-500 font-mono truncate">Unknown</p>
-                    </div>
+        <!-- Supporters -->
+        <section id="supporters" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Supporters</h2>
+                    <p>Uinxed is made possible by the generous support of these people</p>
                 </div>
 
-                <div class="flex items-center space-x-4 p-4 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-mono-800 border border-mono-700 flex items-center justify-center font-mono text-sm text-mono-200 shrink-0 group-hover:border-mono-400 transition-colors">
-                        <img src="https://avatars.githubusercontent.com/u/105213176?v=4" alt="azhzx avatar" class="w-full h-full object-cover rounded-full">
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-sm text-mono-100 truncate">azhzx</p>
-                        <p class="text-xs text-mono-500 font-mono truncate">https://github.com/azhzx</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-4 p-4 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-mono-800 border border-mono-700 flex items-center justify-center font-mono text-sm text-mono-200 shrink-0 group-hover:border-mono-400 transition-colors">
-                        <img src="https://avatars.githubusercontent.com/u/68175497?v=4" alt="beanflame avatar" class="w-full h-full object-cover rounded-full">
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-sm text-mono-100 truncate">beanflame</p>
-                        <p class="text-xs text-mono-500 font-mono truncate">https://github.com/beanflame</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-4 p-4 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-mono-800 border border-mono-700 flex items-center justify-center font-mono text-sm text-mono-200 shrink-0 group-hover:border-mono-400 transition-colors">
-                        星
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-sm text-mono-100 truncate">星宇</p>
-                        <p class="text-xs text-mono-500 font-mono truncate">Unknown</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-4 p-4 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-mono-800 border border-mono-700 flex items-center justify-center font-mono text-sm text-mono-200 shrink-0 group-hover:border-mono-400 transition-colors">
-                        我
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-sm text-mono-100 truncate">我是小猴子</p>
-                        <p class="text-xs text-mono-500 font-mono truncate">Unknown</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-4 p-4 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-mono-800 border border-mono-700 flex items-center justify-center font-mono text-sm text-mono-200 shrink-0 group-hover:border-mono-400 transition-colors">
-                        湖
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-sm text-mono-100 truncate">湖岸山川</p>
-                        <p class="text-xs text-mono-500 font-mono truncate">Unknown</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-4 p-4 rounded-lg bg-mono-900/60 border border-mono-800 hover:border-mono-600 transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-mono-800 border border-mono-700 flex items-center justify-center font-mono text-sm text-mono-200 shrink-0 group-hover:border-mono-400 transition-colors">
-                        <img src="https://avatars.githubusercontent.com/u/152147508?v=4" alt="LeonMMcoset avatar" class="w-full h-full object-cover rounded-full">
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-sm text-mono-100 truncate">LeonMMcoset</p>
-                        <p class="text-xs text-mono-500 font-mono truncate">https://github.com/Leonmmcoset</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Call to action -->
-            <div class="text-center mt-12">
-                <p class="text-mono-500 text-xs font-mono mb-4">Want your name here?</p>
-                <a href="https://github.com/sponsors/ViudiraTech" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-mono-900 border border-mono-700 hover:border-mono-200 text-mono-200 rounded transition-all font-mono text-sm">
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
-                    <span>Become a Supporter</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Link Bar -->
-    <footer class="mt-auto border-t border-mono-800 bg-mono-950 font-mono text-xs text-mono-500">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 md:grid-cols-12 gap-10">
-
-            <!-- Brand -->
-            <div class="md:col-span-4">
-                <a href="#" class="inline-block">
-                    <img src="asset/uinxed-logo-full.webp" alt="Uinxed Kernel" class="w-48 h-auto">
-                </a>
-            </div>
-
-            <!-- Project -->
-            <div class="md:col-span-2">
-                <h4 class="text-mono-200 font-semibold uppercase tracking-wider mb-3">Project</h4>
-                <ul class="space-y-2">
-                    <li><a href="https://deepwiki.com/ViudiraTech/Uinxed-Kernel" class="hover:text-mono-200 transition-colors">DeepWiki</a></li>
-                    <li><a href="https://github.com/ViudiraTech/Uinxed-Kernel" target="_blank" rel="noopener noreferrer" class="hover:text-mono-200 transition-colors">Source Code</a></li>
+                <!--
+                    To add a supporter, copy one <li> below.
+                    With GitHub: <a class="supporter" href="https://github.com/NAME"> + avatar <img>.
+                    Without GitHub: <div class="supporter"> + first character of the name.
+                -->
+                <ul class="supporters">
+                    <li>
+                        <div class="supporter">
+                            <span class="avatar" aria-hidden="true">璇</span>
+                            <span><span class="supporter-name">璇了又璇</span><span class="supporter-meta">Supporter</span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="supporter" href="https://github.com/azhzx" target="_blank" rel="noopener noreferrer">
+                            <img class="avatar" src="https://avatars.githubusercontent.com/u/105213176?v=4&amp;s=80" alt="" width="40" height="40" loading="lazy">
+                            <span><span class="supporter-name">azhzx</span><span class="supporter-meta">github.com/azhzx</span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="supporter" href="https://github.com/beanflame" target="_blank" rel="noopener noreferrer">
+                            <img class="avatar" src="https://avatars.githubusercontent.com/u/68175497?v=4&amp;s=80" alt="" width="40" height="40" loading="lazy">
+                            <span><span class="supporter-name">beanflame</span><span class="supporter-meta">github.com/beanflame</span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="supporter">
+                            <span class="avatar" aria-hidden="true">星</span>
+                            <span><span class="supporter-name">星宇</span><span class="supporter-meta">Supporter</span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="supporter">
+                            <span class="avatar" aria-hidden="true">我</span>
+                            <span><span class="supporter-name">我是小猴子</span><span class="supporter-meta">Supporter</span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="supporter">
+                            <span class="avatar" aria-hidden="true">湖</span>
+                            <span><span class="supporter-name">湖岸山川</span><span class="supporter-meta">Supporter</span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="supporter" href="https://github.com/Leonmmcoset" target="_blank" rel="noopener noreferrer">
+                            <img class="avatar" src="https://avatars.githubusercontent.com/u/152147508?v=4&amp;s=80" alt="" width="40" height="40" loading="lazy">
+                            <span><span class="supporter-name">LeonMMcoset</span><span class="supporter-meta">github.com/Leonmmcoset</span></span>
+                        </a>
+                    </li>
                 </ul>
-            </div>
 
-            <!-- Community -->
-            <div class="md:col-span-2">
-                <h4 class="text-mono-200 font-semibold uppercase tracking-wider mb-3">Community</h4>
-                <ul class="space-y-2">
-                    <li><a href="https://viudiratech.rainyland.top/" target="_blank" rel="noopener noreferrer" class="hover:text-mono-200 transition-colors">ViudiraTech</a></li>
-                    <li><a href="https://rainyland.top/" target="_blank" rel="noopener noreferrer" class="hover:text-mono-200 transition-colors">RainyLand</a></li>
-                    <li><a href="https://github.com/ViudiraTech/Uinxed-Kernel" target="_blank" rel="noopener noreferrer" class="hover:text-mono-200 transition-colors">GitHub</a></li>
-                </ul>
-            </div>
-
-            <!-- Resources -->
-            <div class="md:col-span-2">
-                <h4 class="text-mono-200 font-semibold uppercase tracking-wider mb-3">Resources</h4>
-                <ul class="space-y-2">
-                    <li><a href="https://github.com/ViudiraTech/Uinxed-Kernel/issues" target="_blank" rel="noopener noreferrer" class="hover:text-mono-200 transition-colors">Report an Issue</a></li>
-                    <li><a href="https://github.com/ViudiraTech/Uinxed-Kernel/releases" target="_blank" rel="noopener noreferrer" class="hover:text-mono-200 transition-colors">Releases</a></li>
-                    <li><a href="https://github.com/ViudiraTech/Uinxed-Kernel/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="hover:text-mono-200 transition-colors">License</a></li>
-                </ul>
-            </div>
-
-            <div class="md:col-span-2">
-                <h4 class="text-mono-200 font-semibold uppercase tracking-wider mb-3">CONTACT</h4>
-                <ul class="space-y-2">
-                    <li><a href="https://discord.gg/nTkg7HCpy7" target="_blank" rel="noopener noreferrer" class="hover:text-mono-200 transition-colors">Discord Server</a></li>
-                    <li><a href="https://qm.qq.com/q/8goacFf1iU" target="_blank" rel="noopener noreferrer" class="hover:text-mono-200 transition-colors">QQ Group</a></li>
-                    <li><a href="mailto:2609948707@qq.com" target="_blank" rel="noopener noreferrer" class="hover:text-mono-200 transition-colors">Mail</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Footer Bottom Bar -->
-        <div class="border-t border-mono-800/80">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div>&copy; 2026 ViudiraTech. Website hosted on <a href="#" class="underline hover:text-mono-300">Cloudflare Pages</a>.</div>
-                <div class="flex items-center space-x-5">
-                    <a href="https://github.com/ViudiraTech/Uinxed-Kernel" target="_blank" rel="noopener noreferrer" class="hover:text-mono-300 transition-colors flex items-center space-x-1.5">
-                        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                <div class="supporters-cta">
+                    <p>Want your name here?</p>
+                    <a href="https://github.com/sponsors/ViudiraTech" target="_blank" rel="noopener noreferrer" class="btn">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                         </svg>
-                        <span>GitHub</span>
+                        <span>Become a Supporter</span>
                     </a>
                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <img src="asset/uinxed-logo-full.webp" alt="Uinxed Kernel" width="160" height="160" loading="lazy">
+            </div>
+
+            <div>
+                <h2>Project</h2>
+                <ul>
+                    <li><a href="https://deepwiki.com/ViudiraTech/Uinxed-Kernel" target="_blank" rel="noopener noreferrer">DeepWiki</a></li>
+                    <li><a href="https://github.com/ViudiraTech/Uinxed-Kernel" target="_blank" rel="noopener noreferrer">Source Code</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h2>Community</h2>
+                <ul>
+                    <li><a href="https://viudiratech.rainyland.top/" target="_blank" rel="noopener noreferrer">ViudiraTech</a></li>
+                    <li><a href="https://rainyland.top/" target="_blank" rel="noopener noreferrer">RainyLand</a></li>
+                    <li><a href="https://github.com/ViudiraTech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h2>Resources</h2>
+                <ul>
+                    <li><a href="https://github.com/ViudiraTech/Uinxed-Kernel/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
+                    <li><a href="https://github.com/ViudiraTech/Uinxed-Kernel/releases" target="_blank" rel="noopener noreferrer">Releases</a></li>
+                    <li><a href="https://github.com/ViudiraTech/Uinxed-Kernel/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h2>Contact</h2>
+                <ul>
+                    <li><a href="https://discord.gg/nTkg7HCpy7" target="_blank" rel="noopener noreferrer">Discord Server</a></li>
+                    <li><a href="https://qm.qq.com/q/8goacFf1iU" target="_blank" rel="noopener noreferrer">QQ Group</a></li>
+                    <li><a href="mailto:2609948707@qq.com">Mail</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                &copy; 2026 ViudiraTech. Website hosted on <a href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare Pages</a>.
             </div>
         </div>
     </footer>
