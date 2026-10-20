@@ -1,44 +1,19 @@
-// Tailwind CSS configuration
-tailwind.config = {
-    darkMode: 'class',
-    theme: {
-        extend: {
-            colors: {
-                mono: {
-                    50: '#f9f9f9',
-                    100: '#ececec',
-                    200: '#e0e0e0',
-                    300: '#cccccc',
-                    400: '#888888',
-                    500: '#666666',
-                    600: '#444444',
-                    700: '#222222',
-                    800: '#141414',
-                    900: '#0a0a0a',
-                    950: '#000000',
-                }
-            },
-            fontFamily: {
-                mono: ['"JetBrains Mono"', 'Consolas', 'Fira Code', 'monospace'],
-                sans: ['Inter', 'system-ui', 'sans-serif']
-            }
-        }
-    }
-}
-
-// Copy to clipboard helper
-function copyCloneCmd() {
+// Copy the clone command to the clipboard
+document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('clone-cmd');
-    input.select();
-    document.execCommand('copy');
-    
-    const btnText = document.getElementById('copy-text');
-    btnText.innerText = 'Copied!';
-    setTimeout(() => {
-        btnText.innerText = 'Copy';
-    }, 2000);
-}
+    const button = document.getElementById('copy-btn');
 
-function escapeHtml(text) {
-    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
+    button.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(input.value);
+        } catch (e) {
+            // Clipboard API unavailable (e.g. plain HTTP): fall back to the legacy way
+            input.select();
+            document.execCommand('copy');
+        }
+        button.textContent = 'Copied!';
+        setTimeout(() => {
+            button.textContent = 'Copy';
+        }, 2000);
+    });
+});
