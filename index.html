@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uinxed &mdash; A UNIX-like kernel for x86-64</title>
     <meta name="description" content="Uinxed is a monolithic UNIX-like x86-64 kernel written from scratch in C. Runs on bare metal and virtual machines.">
-    <meta name="theme-color" content="#faf9f5">
+    <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1f1e1d" media="(prefers-color-scheme: dark)">
     <link rel="icon" href="asset/favicon-64.png" type="image/png">
     <link rel="apple-touch-icon" href="asset/uinxed-mark.png">
     <link rel="stylesheet" href="stylesheet/style.css">
@@ -19,7 +20,7 @@
     <header class="site-header">
         <div class="container header-inner">
             <a href="#" class="brand">
-                <img src="asset/uinxed-mark-dark.png" alt="" width="28" height="28">
+                <img class="logo" src="asset/uinxed-mark-dark.png" alt="" width="28" height="28">
                 <span>Uinxed</span>
             </a>
 
@@ -196,7 +197,7 @@ make run -j$(nproc)</code></pre>
     <footer class="site-footer">
         <div class="container footer-grid">
             <div class="footer-brand">
-                <img src="asset/uinxed-logo-full-dark.webp" alt="Uinxed Kernel" width="110" height="99" loading="lazy">
+                <img class="logo" src="asset/uinxed-logo-full-dark.webp" alt="Uinxed Kernel" width="110" height="99" loading="lazy">
             </div>
 
             <div>
