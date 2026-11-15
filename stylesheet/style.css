@@ -415,20 +415,6 @@ a.supporter:hover .supporter-name {
     font-size: 0.85rem;
 }
 
-/* Number of times someone has sponsored, e.g. "×2" */
-.supporter-count {
-    display: inline-block;
-    margin-left: 0.35rem;
-    padding: 0 0.45rem;
-    border-radius: 999px;
-    background: var(--selection);
-    color: var(--text);
-    font-size: 0.75rem;
-    font-weight: 600;
-    line-height: 1.5;
-    vertical-align: 0.1em;
-}
-
 /* ===== Footer ===== */
 .site-footer {
     background: var(--bg-soft);
