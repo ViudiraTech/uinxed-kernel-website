@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Uinxed &mdash; A UNIX-like kernel for x86-64</title>
     <meta name="description" content="Uinxed is a monolithic UNIX-like x86-64 kernel written from scratch in C. Runs on bare metal and virtual machines.">
     <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
@@ -44,7 +44,7 @@
 
         <!-- Hero -->
         <section class="container hero">
-            <h1>A UNIX-like kernel for x86-64, written from scratch.</h1>
+            <h1>A UNIX-like kernel for <span class="nowrap">x86-64</span>, written from scratch.</h1>
             <p class="hero-lead">
                 Uinxed is a monolithic kernel written in C. It boots on bare metal and in virtual machines, and implements the Linux syscall ABI so that real Linux userspace can run on top of it.
             </p>
@@ -119,7 +119,7 @@
                     <li class="step">
                         <h3><span>2.</span> Build and boot</h3>
                         <div class="code code-has-copy">
-<pre><code id="build-cmd">git clone https://github.com/ViudiraTech/Uinxed-Kernel.git
+<pre><code id="build-cmd">git clone https://github.com/ViudiraTech/<wbr>Uinxed-Kernel.git
 cd Uinxed-Kernel
 make run -j$(nproc)</code></pre>
                             <button id="copy-btn" type="button" class="copy">Copy</button>
@@ -143,6 +143,8 @@ make run -j$(nproc)</code></pre>
                     To add a supporter, copy one <li> below.
                     With GitHub: <a class="supporter" href="https://github.com/NAME"> + avatar <img>.
                     Without GitHub: <div class="supporter"> + first character of the name.
+                    Sponsored more than once: add <span class="supporter-count">&times;N</span>
+                    after the name and note it in .supporter-meta.
                 -->
                 <ul class="supporters">
                     <li>
@@ -184,7 +186,7 @@ make run -j$(nproc)</code></pre>
                     <li>
                         <a class="supporter" href="https://github.com/Leonmmcoset" target="_blank" rel="noopener noreferrer">
                             <img class="avatar" src="https://avatars.githubusercontent.com/u/152147508?v=4&amp;s=80" alt="" width="36" height="36" loading="lazy">
-                            <span><span class="supporter-name">LeonMMcoset</span><span class="supporter-meta">@Leonmmcoset</span></span>
+                            <span><span class="supporter-name">LeonMMcoset <span class="supporter-count" aria-hidden="true">&times;2</span></span><span class="supporter-meta">@Leonmmcoset &middot; Sponsored twice</span></span>
                         </a>
                     </li>
                 </ul>
