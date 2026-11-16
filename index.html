@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Uinxed &mdash; A UNIX-like kernel for x86-64</title>
     <meta name="description" content="Uinxed is a monolithic UNIX-like x86-64 kernel written from scratch in C. Runs on bare metal and virtual machines.">
     <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
@@ -44,7 +44,7 @@
 
         <!-- Hero -->
         <section class="container hero">
-            <h1>A UNIX-like kernel for x86-64, written from scratch.</h1>
+            <h1>A UNIX-like kernel for <span class="nowrap">x86-64</span>, written from scratch.</h1>
             <p class="hero-lead">
                 Uinxed is a monolithic kernel written in C. It boots on bare metal and in virtual machines, and implements the Linux syscall ABI so that real Linux userspace can run on top of it.
             </p>
@@ -119,7 +119,7 @@
                     <li class="step">
                         <h3><span>2.</span> Build and boot</h3>
                         <div class="code code-has-copy">
-<pre><code id="build-cmd">git clone https://github.com/ViudiraTech/Uinxed-Kernel.git
+<pre><code id="build-cmd">git clone https://github.com/ViudiraTech/<wbr>Uinxed-Kernel.git
 cd Uinxed-Kernel
 make run -j$(nproc)</code></pre>
                             <button id="copy-btn" type="button" class="copy">Copy</button>
